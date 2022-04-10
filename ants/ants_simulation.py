@@ -197,13 +197,14 @@ def draw_window(ants):
             elif MAP[obj.X, obj.Y] == 0: # if ant did not find a nest
                 if obj.check(2, MAP):    # check for nest
                     obj.detect(2, MAP)   # go to nest
-                    
+                   
+                elif obj.check(-1, MAP): #check for obstacles
+                    obj.antidetect(-1, MAP, PHEROMONE) # go in different direction 
+
                 elif obj.check(1, MAP):  # check for food
                     obj.antidetect(1, MAP, PHEROMONE)  #go in different direction
                 
-                elif obj.check(-1, MAP): #check for obstacles
-                    obj.antidetect(-1, MAP, PHEROMONE) # go in different direction 
-                
+              
                 else:  #just in case  
                     obj.pheromone_detect(MAP, PHEROMONE)
             else:  #if ant looking for nest is at the square with food; should not happen; may cause tunneling of ants through food
